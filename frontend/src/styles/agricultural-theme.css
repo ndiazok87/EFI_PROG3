@@ -1,0 +1,328 @@
+/* 
+ * AgroPrecision - Tema de Colores Agrícolas
+ * Paleta de colores temática para agricultura y ganadería
+ */
+
+:root {
+    /* === COLORES PRINCIPALES === */
+
+    /* Verde Hoja - Color Principal */
+    --primary-color: #2E7D32;
+    --primary-color-rgb: 46, 125, 50;
+    --primary-hover: #1B5E20;
+    --primary-light: #4CAF50;
+
+    /* Verde Brote - Color de Acento */
+    --accent-color: #66BB6A;
+    --accent-hover: #4CAF50;
+    --accent-light: #81C784;
+
+    /* Tierra Fértil - Color Secundario */
+    --secondary-color: #5D4037;
+    --secondary-light: #6D4C41;
+    --secondary-dark: #4E342E;
+
+    /* Amarillo Trigo - Advertencias y Cosecha */
+    --warning-color: #F9A825;
+    --warning-light: #FDD835;
+    --warning-dark: #F57F17;
+
+    /* Blanco Humo - Fondo */
+    --background-color: #F1F8E9;
+    --background-light: #F9FBE7;
+
+    /* === COLORES SEMÁNTICOS === */
+    --success-color: #66BB6A;
+    --success-light: #81C784;
+    --error-color: #D32F2F;
+    --info-color: #1976D2;
+
+    /* === OVERLAYS DE PRIMEREACT === */
+
+    /* Buttons */
+    --p-button-primary-background: var(--primary-color);
+    --p-button-primary-hover-background: var(--primary-hover);
+    --p-button-primary-active-background: var(--primary-hover);
+    --p-button-primary-border-color: var(--primary-color);
+
+    --p-button-success-background: var(--accent-color);
+    --p-button-success-hover-background: var(--accent-hover);
+    --p-button-success-border-color: var(--accent-color);
+
+    /* Inputs */
+    --p-input-border-color: #C8E6C9;
+    --p-input-focus-border-color: var(--primary-color);
+
+    /* Calendar */
+    --p-calendar-selected-background: var(--primary-color);
+    --p-calendar-today-background: var(--accent-light);
+
+    /* Dropdown */
+    --p-dropdown-hover-background: var(--background-light);
+    --p-dropdown-selected-background: var(--accent-light);
+
+    /* Toast */
+    --p-toast-success-background: var(--accent-color);
+    --p-toast-warn-background: var(--warning-color);
+
+    /* Surface colors */
+    --surface-ground: var(--background-color);
+    --surface-0: #FFFFFF;
+    --surface-50: #FAFAFA;
+    --surface-100: #F5F5F5;
+}
+
+/* === BOTONES PERSONALIZADOS === */
+
+/* Botón Primary (Verde Hoja) */
+.p-button:not(.p-button-outlined):not(.p-button-text) {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.p-button:not(.p-button-outlined):not(.p-button-text):hover {
+    background: var(--primary-hover);
+    border-color: var(--primary-hover);
+}
+
+/* Botón Success (Verde Brote) */
+.p-button.p-button-success:not(.p-button-outlined):not(.p-button-text) {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.p-button.p-button-success:not(.p-button-outlined):not(.p-button-text):hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+}
+
+/* Botón Warning (Amarillo Trigo) */
+.p-button.p-button-warning:not(.p-button-outlined):not(.p-button-text) {
+    background: var(--warning-color);
+    border-color: var(--warning-color);
+    color: #3E2723;
+}
+
+.p-button.p-button-warning:not(.p-button-outlined):not(.p-button-text):hover {
+    background: var(--warning-dark);
+    border-color: var(--warning-dark);
+}
+
+/* Botón Outlined */
+.p-button.p-button-outlined {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.p-button.p-button-outlined:hover {
+    background: rgba(46, 125, 50, 0.04);
+    border-color: var(--primary-hover);
+    color: var(--primary-hover);
+}
+
+/* === INPUTS === */
+
+.p-inputtext:enabled:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
+}
+
+.p-inputnumber-input:enabled:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
+}
+
+.p-dropdown:not(.p-disabled).p-focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
+}
+
+.p-calendar:not(.p-calendar-disabled).p-focus .p-inputtext {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
+}
+
+/* === DROPDOWN === */
+
+.p-dropdown-item.p-highlight {
+    background: var(--accent-light);
+    color: #1B5E20;
+}
+
+.p-dropdown-item:not(.p-highlight):hover {
+    background: var(--background-light);
+}
+
+.p-dropdown-item .pi-check {
+    color: var(--primary-color);
+}
+
+/* === CALENDAR === */
+
+.p-datepicker .p-datepicker-today>span {
+    background: var(--accent-light);
+    color: #1B5E20;
+}
+
+.p-datepicker table td>span.p-highlight {
+    background: var(--primary-color);
+    color: white;
+}
+
+.p-badge.p-badge-warning {
+    background-color: var(--warning-color);
+    color: #3E2723;
+}
+
+/* === CARDS === */
+
+.p-card {
+    background: white;
+    border: 1px solid #E8F5E9;
+}
+
+.p-card:hover {
+    box-shadow: 0 8px 16px rgba(46, 125, 50, 0.15);
+}
+
+/* === TABS === */
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {
+    box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.25);
+}
+
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* === NAVBAR === */
+
+.app-navbar {
+    background: var(--primary-color);
+    border-bottom: 3px solid var(--primary-hover);
+    color: white;
+}
+
+.app-navbar h1,
+.app-navbar .text-900 {
+    color: white !important;
+}
+
+/* === BACKGROUNDS === */
+
+body {
+    background-color: var(--background-color);
+}
+
+.surface-ground {
+    background-color: var(--background-color);
+}
+
+/* === FOOTER === */
+
+.app-footer {
+    background: var(--secondary-color);
+    color: white;
+}
+
+/* === LINKS === */
+
+a,
+.text-primary {
+    color: var(--primary-color);
+}
+
+a:hover {
+    color: var(--primary-hover);
+}
+
+/* === PASSWORD STRENGTH === */
+
+.p-password-panel .p-password-meter {
+    background: #E0E0E0;
+}
+
+.p-password-panel .p-password-strength.weak {
+    background: var(--error-color);
+}
+
+.p-password-panel .p-password-strength.medium {
+    background: var(--warning-color);
+}
+
+.p-password-panel .p-password-strength.strong {
+    background: var(--accent-color);
+}
+
+/* === MENSAJES === */
+
+.p-message.p-message-success {
+    background: rgba(102, 187, 106, 0.1);
+    border-color: var(--accent-color);
+    color: #1B5E20;
+}
+
+.p-message.p-message-warn {
+    background: rgba(249, 168, 37, 0.1);
+    border-color: var(--warning-color);
+    color: #5D4037;
+}
+
+.p-message.p-message-error {
+    background: rgba(211, 47, 47, 0.1);
+    border-color: var(--error-color);
+    color: #B71C1C;
+}
+
+/* === INPUT SWITCH === */
+
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+    background: var(--accent-color);
+}
+
+/* === LOADING SPINNER === */
+
+.pi-spinner {
+    color: var(--primary-color);
+}
+
+/* === DIALOG === */
+
+.p-dialog .p-dialog-header {
+    background: white;
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--background-color);
+}
+
+.p-dialog .p-dialog-title {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+/* === UTILIDADES === */
+
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+.bg-accent {
+    background-color: var(--accent-color) !important;
+}
+
+.bg-secondary {
+    background-color: var(--secondary-color) !important;
+}
+
+.text-primary-custom {
+    color: var(--primary-color) !important;
+}
+
+.text-secondary-custom {
+    color: var(--secondary-color) !important;
+}
+
+.border-primary {
+    border-color: var(--primary-color) !important;
+}
