@@ -23,12 +23,28 @@ const isDev = process.env.NODE_ENV === 'development' || !process.env.NODE_ENV;
 let sequelize;
 
 if (isDev) {
+  console.log('🔧 Using SQLite database (development mode)');
   sequelize = new Sequelize({
     dialect: 'sqlite',
     storage: path.resolve(projectRoot, 'dev.sqlite'),
     logging: false,
   });
 } else {
+  console.log('🚀 Using MySQL database (production mode)');
+  console.log('📊 MySQL Configuration:');
+  console.log(`   - Host: ${process.env.MYSQL_HOST || 'NOT SET'}`);
+  console.log(`   - Port: ${process.env.MYSQL_PORT || 'NOT SET (default: 3306)'}`);
+  console.log(`   - Database: ${process.env.MYSQL_DATABASE || 'NOT SET'}`);
+  console.log(`   - User: ${process.env.MYSQL_USER || 'NOT SET'}`);
+  console.log(`   - Password: ${process.env.MYSQL_PASSWORD ? '***SET***' : 'NOT SET'}`);
+
+  // Validate required environment variables
+  if (!process.env.MYSQL_HOST || !process.env.MYSQL_USER || !process.env.MYSQL_DATABASE) {
+    console.error('❌ ERROR: Missing required MySQL environment variables!');
+    console.error('   Required: MYSQL_HOST, MYSQL_USER, MYSQL_DATABASE, MYSQL_PASSWORD');
+    throw new Error('Missing required MySQL configuration');
+  }
+
   sequelize = new Sequelize(process.env.MYSQL_DATABASE, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, {
     host: process.env.MYSQL_HOST,
     port: process.env.MYSQL_PORT ? Number(process.env.MYSQL_PORT) : 3306,

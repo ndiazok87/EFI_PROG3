@@ -36,30 +36,45 @@ const PORT = process.env.PORT || 4000;
 
 async function start() {
   try {
+    console.log('🚀 Starting server...');
+    console.log(`📌 Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`🔌 Port: ${PORT}`);
+
     // Sync DB: in development sync({ alter: true }) is convenient; in prod use migrations
     if (process.env.NODE_ENV === 'development') {
       try {
         // Try to apply schema changes in development. Some dialects (SQLite)
         // can fail when attempting to alter tables with existing FK constraints.
         await sequelize.sync({ alter: true });
-        console.log('Database synced (development) using alter');
+        console.log('✅ Database synced (development) using alter');
       } catch (err) {
-        console.warn('sequelize.sync({ alter: true }) failed, falling back to sequelize.sync():', err.message || err);
+        console.warn('⚠️  sequelize.sync({ alter: true }) failed, falling back to sequelize.sync():', err.message || err);
         // Fallback: perform a safe sync that only creates missing tables/columns
         // without attempting destructive drops/changes that may violate FK constraints.
         await sequelize.sync();
-        console.log('Database synced (development) using fallback sync');
+        console.log('✅ Database synced (development) using fallback sync');
       }
     } else {
+      console.log('🔄 Authenticating database connection...');
       await sequelize.authenticate();
-      console.log('Database connection authenticated');
+      console.log('✅ Database connection authenticated successfully');
+
+      // In production, run migrations if needed
+      console.log('ℹ️  Note: Run migrations manually if schema changes are needed');
     }
 
     app.listen(PORT, () => {
-      console.log(`Server listening on port ${PORT}`);
+      console.log('✅ Server listening on port ' + PORT);
+      console.log('🎉 Application started successfully!');
     });
   } catch (err) {
-    console.error('Failed to start server:', err);
+    console.error('❌ Failed to start server:');
+    console.error('   Error name:', err.name);
+    console.error('   Error message:', err.message);
+    if (err.original) {
+      console.error('   Original error:', err.original.message || err.original);
+    }
+    console.error('   Full error:', err);
     process.exit(1);
   }
 }
