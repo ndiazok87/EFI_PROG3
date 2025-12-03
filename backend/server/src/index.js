@@ -19,12 +19,32 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 const app = express();
-app.use(cors({
-  origin: '*', // Permitir cualquier origen temporalmente para solucionar el error
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+
+// 🚨 SOLUCIÓN DEFINITIVA CORS MANUAL 🚨
+app.use((req, res, next) => {
+  // Permitir cualquier origen
+  res.header('Access-Control-Allow-Origin', '*');
+
+  // Permitir headers específicos
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+
+  // Permitir métodos específicos
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+
+  // Si es una petición OPTIONS (preflight), responder OK inmediatamente
+  if (req.method === 'OPTIONS') {
+    return res.sendStatus(200);
+  }
+
+  next();
+});
+
 app.use(express.json());
+
+// Endpoint de prueba para verificar que el servidor responde
+app.get('/ping', (req, res) => {
+  res.json({ message: 'pong', timestamp: new Date() });
+});
 
 // mount API routes
 app.use('/api/auth', authRouter);
