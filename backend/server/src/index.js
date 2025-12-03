@@ -19,7 +19,11 @@ const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: '*', // Permitir cualquier origen temporalmente para solucionar el error
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 // mount API routes
