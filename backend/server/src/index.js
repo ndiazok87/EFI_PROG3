@@ -63,7 +63,7 @@ async function start() {
       console.log('ℹ️  Note: Run migrations manually if schema changes are needed');
     }
 
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
       console.log('✅ Server listening on port ' + PORT);
       console.log('🎉 Application started successfully!');
     });
