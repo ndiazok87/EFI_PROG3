@@ -18,7 +18,7 @@ AGRO-PRESICION_EFI_PROG3/
 ## Frontend (Vercel)
 - `cd frontend`
 - Instala dependencias: `npm install`
-- Variables: crear/editar `frontend/.env` (ej. `VITE_API_URL="http://localhost:4000"`)
+- Variables: crear/editar `frontend/.env` (ej. `VITE_API_URL="http://localhost:8000"`)
 - Ejecutar: `npm run dev` (puerto 8080), `npm run build` y `npm run preview`
 
 ## Backend (Railway)

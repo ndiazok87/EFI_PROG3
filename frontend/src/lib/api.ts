@@ -11,7 +11,11 @@ export async function apiFetch(path: string, options: RequestInit = {}) {
   if (token) headers['Authorization'] = `Bearer ${token}`;
   if (!headers['Content-Type'] && options.body) headers['Content-Type'] = 'application/json';
 
-  const res = await fetch(`${base}${path}`, { ...options, headers });
+  const fullUrl = `${base}${path}`;
+  console.log('🚀 API Request:', fullUrl);
+  console.log('📨 Headers:', headers);
+
+  const res = await fetch(fullUrl, { ...options, headers });
   // dispatch global events for 401/403 so the app can react (e.g., logout)
   if (res.status === 401) {
     try {
