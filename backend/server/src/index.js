@@ -20,22 +20,13 @@ dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 const app = express();
 
-// 🚨 SOLUCIÓN DEFINITIVA CORS MANUAL 🚨
 app.use((req, res, next) => {
-  // Permitir cualquier origen
   res.header('Access-Control-Allow-Origin', '*');
-
-  // Permitir headers específicos
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-
-  // Permitir métodos específicos
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-
-  // Si es una petición OPTIONS (preflight), responder OK inmediatamente
   if (req.method === 'OPTIONS') {
     return res.sendStatus(200);
   }
-
   next();
 });
 
